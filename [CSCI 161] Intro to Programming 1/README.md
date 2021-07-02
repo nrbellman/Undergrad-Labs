@@ -1,5 +1,6 @@
 ## CSCI 161 - Introduction to Programming I
 
+**University:** Millersville University of Pennsylvania
 **Semester Taken:** Spring 2019  
 **Professor:** Dr. Chad Hogg
 
