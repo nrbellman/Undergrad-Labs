@@ -2,7 +2,7 @@
  * 
  * Draws a number of different rectangles and triangles.
  * 
- * @author nrbellma
+ * @author Nicholas Bellman
  *
  */
 public class ShapeDrawer {
