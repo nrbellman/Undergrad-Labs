@@ -1,7 +1,7 @@
 /**
  * Draws a sideways robot face.
  * 
- * @author Nick Bellman
+ * @author Nicholas Bellman
  *
  */
 public class RobotFaceDrawer 
