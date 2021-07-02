@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 /**
  * A program that performs basic calculations for the user.
- * It currently contains many errors.
+ * It previously contained many errors.
  * 
- * @author Chad Hogg
+ * @author Chad Hogg, Nicholas Bellman
  */
 public class Calculator {
 
