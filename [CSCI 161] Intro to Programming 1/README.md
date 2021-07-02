@@ -1,13 +1,13 @@
 ## CSCI 161 - Introduction to Programming I
 
-**University:** Millersville University of Pennsylvania
-**Semester Taken:** Spring 2019  
+**University:** Millersville University of Pennsylvania  
+**Semester:** Spring 2019  
 **Professor:** Dr. Chad Hogg
 
-**Course Description:**  
+### Course Description:  
 Introduction to computer programming for the student intending to major in computer science or related fields. Emphasis on developing ability to apply problem-solving strategies to design and implement algorithms in a modern programming language, currently Java.
 
-**Course Goals:**  
+### Course Goals:  
 - be able to use a computer system to edit, compile, and execute a program.
 - be able to design a solution to a given problem.
 - be able to write a program to implement the solution.
