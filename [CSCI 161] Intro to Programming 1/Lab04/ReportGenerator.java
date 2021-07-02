@@ -3,7 +3,7 @@ import java.util.Scanner;
 /**
  * Generates a report for a painting service.
  * 
- * @author nrbellma
+ * @author Nicholas Bellman
  *
  */
 public class ReportGenerator {
