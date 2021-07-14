@@ -1,0 +1,122 @@
+#
+# trace01.txt - Properly terminate on EOF.
+#
+tsh>
+
+#
+# trace02.txt - Process builtin quit command.
+#
+tsh>
+
+#
+# trace03.txt - Run a foreground job.
+#
+tsh> tsh> quit
+tsh>
+
+#
+# trace04.txt - Run a background job.
+#
+tsh> tsh> ./myspin 1 &
+tsh> (13736) ./myspin 1 &
+tsh>
+
+#
+# trace05.txt - Forward SIGINT to foreground job.
+#
+tsh> tsh> ./myspin 4
+tsh> Job (13771) terminated by signal 2
+tsh>
+
+#
+# trace06.txt - Forward SIGINT only to foreground job.
+#
+tsh> tsh> ./myspin 4 &
+tsh> (13811) ./myspin 4 &
+tsh> tsh> ./myspin 5
+tsh> Job (13813) terminated by signal 2
+tsh> tsh> jobs
+tsh> jobs: Command not found
+tsh>
+
+#
+# trace07.txt - Forward SIGTSTP only to foreground job.
+#
+tsh> tsh> ./myspin 4 &
+tsh> (13872) ./myspin 4 &
+tsh> tsh> ./myspin 5
+tsh> Job (13874) stopped by signal 20
+tsh> tsh> jobs
+tsh> jobs: Command not found
+tsh>
+
+#
+# trace08.txt - Process bg builtin command
+#
+tsh> tsh> ./myspin 5
+tsh> Job (13927) stopped by signal 20
+tsh> tsh> bg %2
+tsh> bg: Command not found
+tsh>
+
+#
+# trace09.txt - Forward SIGINT to every process in foreground process group
+#
+tsh> tsh> ./mysplit 4
+tsh> Job (13970) terminated by signal 2
+tsh> tsh> /bin/ps -o pid,tty,stat,time,comm
+tsh>   PID TT       STAT     TIME COMMAND
+11379 pts/5    Ss   00:00:00 bash
+13967 pts/5    S+   00:00:00 sdriver.pl
+13968 pts/5    S+   00:00:00 tshref
+13985 pts/5    R    00:00:00 ps
+tsh>
+
+#
+# trace10.txt - Forward SIGTSTP to every process in foreground process group
+#
+tsh> tsh> ./mysplit 4
+tsh> Job (14013) stopped by signal 20
+tsh> tsh> jobs
+tsh> jobs: Command not found
+tsh> tsh> /bin/ps -o pid,tty,stat,time,comm
+tsh>   PID TT       STAT     TIME COMMAND
+11379 pts/5    Ss   00:00:00 bash
+14010 pts/5    S+   00:00:00 sdriver.pl
+14011 pts/5    S+   00:00:00 tshref
+14013 pts/5    T    00:00:00 mysplit
+14014 pts/5    T    00:00:00 mysplit
+14030 pts/5    R    00:00:00 ps
+tsh>
+
+#
+# trace11.txt - Restart every stopped process in process group
+#
+tsh> tsh> ./mysplit 4
+tsh> Job (14056) stopped by signal 20
+tsh> tsh> /bin/ps -o pid,tt,stat,time,comm
+tsh>   PID TT       STAT     TIME COMMAND
+11379 pts/5    Ss   00:00:00 bash
+14053 pts/5    S+   00:00:00 sdriver.pl
+14054 pts/5    S+   00:00:00 tshref
+14056 pts/5    T    00:00:00 mysplit
+14057 pts/5    T    00:00:00 mysplit
+14073 pts/5    R    00:00:00 ps
+tsh> tsh> fg
+tsh> tsh> tsh> /bin/ps -o pid,tt,stat,time,comm
+tsh>   PID TT       STAT     TIME COMMAND
+11379 pts/5    Ss   00:00:00 bash
+14053 pts/5    S+   00:00:00 sdriver.pl
+14054 pts/5    S+   00:00:00 tshref
+14090 pts/5    R    00:00:00 ps
+tsh>
+
+#
+# trace12.txt - Simple error handling
+#
+tsh> tsh> ./bogus
+tsh> ./bogus: Command not found
+tsh> tsh> ./myspin 4 &
+tsh> (14120) ./myspin 4 &
+tsh> tsh> fg
+tsh> tsh>
